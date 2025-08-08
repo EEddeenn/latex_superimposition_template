@@ -1,0 +1,55 @@
+% Remember to match page size of your assignments.
+\documentclass[12pt]{article}
+
+\usepackage{tikz}
+\usepackage{datetime}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\newcommand{\helplines}{
+  \draw [help lines] (0,0) grid (current page.north east);
+  \draw [help lines,thick] (0,0) grid [step=5cm] (current page.north east);
+}
+
+\newcommand{\by}[1]{
+  \node at (6cm,2cm) {#1};
+  \node at (10cm,2cm) {Last built on {\ddmmyyyydate\today} at \currenttime};
+}
+
+\newcommand{\supose}[3]{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node at (current page.center) {\includegraphics[page=#2]{#1}};
+    \begin{scope}[shift={(current page.south west)},every node/.style={anchor=base west}]
+      #3
+    \end{scope}
+  \end{tikzpicture}
+  \clearpage
+}
+
+\pagestyle{empty}
+\begin{document}
+% Page 1
+% Use \supose{filename}{page}{your answer} to superimpose tex output to filename[page].
+\supose{assignment}{1}{
+  % You may change color of you contents.
+  \color{blue}
+  % Delete \helplines before submitting assignment.
+  \helplines
+  % Sample Formulae
+  \node at (6cm, 20.5cm) {
+    $ 1 = 0 + 1 <= x <= 1 + 0 = 1 \Rightarrow x \rightarrow 1$
+  };
+  % Use align to enable \newline in node
+  \node[align=left] at (5cm, 17.5cm) {
+    $\text{Given a field } \mathbb{F}, \text{ Let }C_n \text{be the category of all vectors in } \mathbb{F}^n$ \\
+    $\exists C^{op} \text{ s.t. } \forall \mu \in \text{Hom}_C, \exists \mu^{op} \in Hom_{C^{op}}$ \\
+    $...$
+  };
+  \node[align=center] at (4cm, 6cm) {
+    (a) \\ \\ (b) \\ \\ (c)
+  };
+  % Fill your name here.
+  \by{James Smith}
+}
+
+\end{document}
