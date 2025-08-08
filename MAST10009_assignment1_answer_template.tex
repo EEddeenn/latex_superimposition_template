@@ -1,0 +1,75 @@
+\documentclass[a4paper]{article}
+
+\usepackage{tikz}
+\usepackage{datetime}
+\usepackage{amsfonts}
+
+\newcommand{\helplines}{
+  \draw [help lines] (0,0) grid (current page.north east);
+  \draw [help lines,thick] (0,0) grid [step=5cm] (current page.north east);
+}
+
+\newcommand{\by}[1]{
+  \node at (15.5cm,27.3cm) {#1};
+  \node at (15cm,26.8cm) {Last built on {\ddmmyyyydate\today} at \currenttime};
+}
+
+\newcommand{\supose}[3]{
+  % Page 1
+  \begin{tikzpicture}[remember picture,overlay]
+    % \supose{filename}{page}{contents} to superimpose {contents} output to file[page]
+    \node at (current page.center) {\includegraphics[page=#2]{#1}};
+    \begin{scope}[shift={(current page.south west)},every node/.style={anchor=base west}]
+      % Delete \helplines before submitting assignment
+      #3
+    \end{scope}
+  \end{tikzpicture}
+  \clearpage
+}
+
+\pagestyle{empty}
+\begin{document}
+% You may change color of you contents
+\color{blue}
+% Page 1
+% \supose{filename}{page}{your answer} to superimpose tex output to file[page]
+\supose{MAST10009-2025-Assignment-1}{1}{
+  % delete \helplines before submitting assignment
+  \helplines
+  \node at (16cm, 28.5cm) {4242424};
+  % Fill your name here
+  \by{James Smith}
+}
+% Page 2
+\supose{MAST10009-2025-Assignment-1}{2}{
+  \helplines
+}
+% Page 3
+\supose{MAST10009-2025-Assignment-1}{3}{
+  \helplines
+}
+% Page 4
+\supose{MAST10009-2025-Assignment-1}{4}{
+  \helplines
+}
+% Page 5
+\supose{MAST10009-2025-Assignment-1}{5}{
+  \helplines
+}
+% Page 6
+\supose{MAST10009-2025-Assignment-1}{6}{
+  \helplines
+}
+% Page 7
+\supose{MAST10009-2025-Assignment-1}{7}{
+  \helplines
+}
+% Page 8
+\supose{MAST10009-2025-Assignment-1}{8}{
+  \helplines
+}
+% Page 9
+\supose{MAST10009-2025-Assignment-1}{9}{
+  \helplines
+}
+\end{document}
